@@ -5,35 +5,131 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <style>
-        .content-table {
-            border-collapse: collapse;
-            margin: 25px 0;
-            font-size: 0.9em;
-            min-width: 600px;
-        }
+        * {
+  font-family: sans-serif; /* Change your font family */
+}
+
+.content-table {
+  border-collapse: collapse;
+  margin: 25px 0;
+  font-size: 0.9em;
+  min-width: 400px;
+  border-radius: 5px 5px 0 0;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.content-table thead tr {
+  background-color: #009879;
+  color: #ffffff;
+  text-align: left;
+  font-weight: bold;
+}
+
+.content-table th,
+.content-table td {
+  padding: 12px 15px;
+}
+
+.content-table tbody tr {
+  border-bottom: 1px solid #dddddd;
+}
+
+.content-table tbody tr:nth-of-type(even) {
+  background-color: #f3f3f3;
+}
+
+.content-table tbody tr:last-of-type {
+  border-bottom: 2px solid #009879;
+}
+
+.content-table tbody tr.active-row {
+  font-weight: bold;
+  color: #009879;
+}
+
+.btn-group button {
+  background-color: #04AA6D; /* Green background */
+  border: 1px solid green; /* Green border */
+  color: white; /* White text */
+  padding: 10px 24px; /* Some padding */
+  cursor: pointer; /* Pointer/hand icon */
+  width: 100%; /* Set a width if needed */
+  display: block; /* Make the buttons appear below each other */
+}
+
+.btn-group button:not(:last-child) {
+  border-bottom: none; /* Prevent double borders */
+}
+
+/* Add a background color on hover */
+.btn-group button:hover {
+  background-color: #3e8e41;
+}
     </style>
     <title>Cards</title>
     <p1>hello jungle</p1>
     <h1>New table fancy</h1>
-    <table id="cards" class="content-table">
-        <tr>
-          <th>Card Number : Name</th>
-          <th>Card Photo</th>
-          <th>Template Link</th>
-          <th>Description</th>
-          <th>Rarity</th>
-        </tr>
-        <tr>
-          <td>1 monKeyprinter Go BRR</td>
-          <td><img src="https://atomichub-ipfs.com/ipfs/QmPgoatGPQFKfzxmSfX1bD33KFXupWzXDrJpco3qc6V3mc" width=400 height="auto"></td>
-          <td>https://wax.atomichub.io/explorer/template/crptomonkeys/15815</td>
-          <td>None</td>
-          <td>Legendary</td>
-        </tr>
+    <table class="content-table">
+        <thead>
+          <tr>
+            <th>Card #</th>
+            <th>Code</th>
+            <th>Picture</th>
+            <th>Buttons</th>
+            <th>Description</th>
+            <th>Object List</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>MGB</td>
+            <td><img src="https://atomichub-ipfs.com/ipfs/QmPgoatGPQFKfzxmSfX1bD33KFXupWzXDrJpco3qc6V3mc" width=400 height="auto"></td>
+            <td><center>
+              
+              <div class="btn-group">
+              <button onclick="copyText('Monkeyprinter go brrr')">Copy Full name</button>
+              <button onclick="copyText('Monkeyprinter go brrr Legendary')">Full Name Rarity</button>
+              <button onclick="copyText('Monkeyprinter go brrr')">Mints</button>
+              <button onclick="copyText('Monkeyprinter go brrr')">Think of something else</button>
+              </div>
+            </td>
+            <td>None</td>
+            <td>stamp cigar crown chart</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Sally</td>
+            <td>72,400</td>
+            <td><div class="btn-group">
+        <button>Apple</button>
+        <button>Samsung</button>
+        <button>Sony</button>
+      </div></td>
+            <td>dcode</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>Nick</td>
+            <td>52,300</td>
+            <td>dcode</td>
+            <td>dcode</td>
+          </tr>
+        </tbody>
       </table>
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
-	<script src="index.js"></script>
+    <script>
+        var value = "";
+        function copyText(copytext) {
+      
+            /* Copy text into clipboard */
+            navigator.clipboard.writeText
+                (copytext);
+        }
+    </script>
+
   </body>
 </html>
