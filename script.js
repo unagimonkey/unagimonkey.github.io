@@ -1,14 +1,14 @@
 const imageData = [
     {
       title: 'Cats',
-      imageUrl: 'https://www.example.com/cat.jpg',
+      imageUrl: 'https://atomichub-ipfs.com/ipfs/QmPgoatGPQFKfzxmSfX1bD33KFXupWzXDrJpco3qc6V3mc',
       question: 'Which animal is in the picture?',
       options: ['Cats', 'Dogs', 'Birds', 'Fish'],
       answer: 'Cats'
     },
     {
       title: 'Dogs',
-      imageUrl: 'https://www.example.com/dog.jpg',
+      imageUrl: 'https://cloudflare-ipfs.com/ipfs/QmNf2TeU8rN6WRt5uV6hTEmGKE9tbz11WpdgXQk1b33iSR',
       question: 'What type of animal is in the picture?',
       options: ['Cats', 'Dogs', 'Birds', 'Fish'],
       answer: 'Dogs'
@@ -16,7 +16,7 @@ const imageData = [
     // Add more image objects as needed
   ];
 
- function displayRandomImage() {
+function displayRandomImage() {
     // Get a random image object from the imageData array
     const randomIndex = Math.floor(Math.random() * imageData.length);
     const randomImage = imageData[randomIndex];
@@ -48,7 +48,7 @@ const imageData = [
     answerMessage.textContent = '';
   }
 
-  function handleSubmit(event) {
+function handleSubmit(event) {
     event.preventDefault();
   
     // Get the selected answer value
