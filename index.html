@@ -1,27 +1,106 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Random Image and Question</title>
+    <meta charset="utf-8">
+    <title>Image Quiz</title>
+    <style>
+      #image-container {
+        width: 100px;
+        height: 100px;
+      }
+      label {
+        display: block;
+      }
+    </style>
   </head>
   <body>
-    <div>
-      <img id="image-container" src="" alt="Random Image" width="100" height="100">
-    </div>
-    <div>
-      <h2 id="question-container"></h2>
-      <form id="answer-form">
-        <input type="radio" id="option-1" name="answer" value="">
-        <label for="option-1" id="option-1-label"></label><br>
-        <input type="radio" id="option-2" name="answer" value="">
-        <label for="option-2" id="option-2-label"></label><br>
-        <input type="radio" id="option-3" name="answer" value="">
-        <label for="option-3" id="option-3-label"></label><br>
-        <input type="radio" id="option-4" name="answer" value="">
-        <label for="option-4" id="option-4-label"></label><br>
+    <h1>Image Quiz</h1>
+    <img id="image-container" alt="" />
+    <form>
+      <fieldset>
+        <legend id="question-container"></legend>
+        <label><input type="radio" name="answer" value="" required /> </label>
+        <label><input type="radio" name="answer" value="" required /> </label>
+        <label><input type="radio" name="answer" value="" required /> </label>
+        <label><input type="radio" name="answer" value="" required /> </label>
         <button type="submit">Submit</button>
-      </form>
-      <p id="answer-message"></p>
-    </div>
-    <script src="script.js"></script>
+      </fieldset>
+    </form>
+    <p id="answer-message"></p>
+    <script>
+      const imageData = [
+        {
+          title: 'Cats',
+          imageUrl: 'https://via.placeholder.com/100x100?text=Cat',
+          question: 'Which animal is in the picture?',
+          options: ['Cats', 'Dogs', 'Birds', 'Fish'],
+          answer: 'Cats'
+        },
+        {
+          title: 'Dogs',
+          imageUrl: 'https://via.placeholder.com/100x100?text=Dog',
+          question: 'What type of animal is in the picture?',
+          options: ['Cats', 'Dogs', 'Birds', 'Fish'],
+          answer: 'Dogs'
+        },
+        {
+          title: 'Birds',
+          imageUrl: 'https://via.placeholder.com/100x100?text=Bird',
+          question: 'Which animal is in the picture?',
+          options: ['Cats', 'Dogs', 'Birds', 'Fish'],
+          answer: 'Birds'
+        },
+        {
+          title: 'Fish',
+          imageUrl: 'https://via.placeholder.com/100x100?text=Fish',
+          question: 'Which animal is in the picture?',
+          options: ['Cats', 'Dogs', 'Birds', 'Fish'],
+          answer: 'Fish'
+        }
+      ];
+
+      const imageContainer = document.getElementById('image-container');
+      const questionContainer = document.getElementById('question-container');
+      const optionInputs = document.querySelectorAll('input[type="radio"]');
+      const answerMessage = document.getElementById('answer-message');
+
+      function displayRandomImage() {
+        const randomIndex = Math.floor(Math.random() * imageData.length);
+        const randomImage = imageData[randomIndex];
+        imageContainer.src = randomImage.imageUrl;
+        imageContainer.alt = randomImage.title;
+        questionContainer.textContent = randomImage.question;
+        randomImage.options.forEach((option, index) => {
+          optionInputs[index].value = option;
+          optionInputs[index].checked = false;
+          const label = optionInputs[index].parentNode;
+          label.textContent = option;
+        });
+        answerMessage.textContent = '';
+      }
+
+      function handleSubmit(event) {
+        event.preventDefault();
+        const selectedOption = document.querySelector('input[name="answer"]:checked');
+        const selectedValue = selectedOption ? selectedOption.value : null;
+        const correctValue = imageData.find(image => image.title === imageContainer.alt).answer;
+        if (selectedValue === correctValue) {
+          answerMessage.textContent = 'Correct!';
+        } else {
+          answerMessage.textContent = 'Incorrect. Try again.';
+       
+        }
+      }
+
+      // Display a random image on page load
+      displayRandomImage();
+
+      // Display a new random image when the form is submitted
+      const form = document.querySelector('form');
+      form.addEventListener('submit', handleSubmit);
+
+      // Display a new random image when the user clicks on the image
+      imageContainer.addEventListener('click', displayRandomImage);
+    </script>
   </body>
 </html>
